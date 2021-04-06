@@ -1,22 +1,22 @@
 @extends('templates.template')
 @section('content')
-<h1 class='text-center'>@if(isset($guitarra))Editar @else Cadastrar @endif</h1>
+<h1 class='text-center'>@if(isset($guitar))Editar @else Cadastrar @endif</h1>
 
 <!--Conteudo cadastro -->
-    @if(isset($guitarra))
+    @if(isset($guitar))
         <div class="container my-3">
-        <form id="formEditGuitarras" action="{{url("editar/$guitarra->id")}}" method="POST"  class="row">
+        <form id="formEditguitars" action="{{url("editar/$guitar->id")}}" method="POST"  class="row">
             @method('PUT')
     @else    
         <div class="container my-3">
-        <form id="formCadGuitarras"  method="POST" action="{{url('cadastrar')}}" class="row">
+        <form id="formCadguitars"  method="POST" action="{{url('cadastrar')}}" class="row">
     @endif
 
 
         @csrf
         <div class="form-group col-md-6">
             <label>Marca:</label><label class="text-danger">*</label>
-            <select id="marca" name="marca" class="form-control custom-select" value="{{$guitarra->marca ?? ""}}" required >
+            <select id="marca" name="marca" class="form-control custom-select" value="{{$guitar->marca ?? ""}}" required >
                 <option value="">-- Selecionar --</option>
                 <option value="Fender">Fender</option>
                 <option value="Gibson">Gibson</option>
@@ -32,24 +32,24 @@
         </div>
         <div class="form-group col-md-6">
             <label>Modelo:</label><label class="text-danger">*</label>
-            <input type="text" id="modelo" name="modelo" class="form-control" value="{{$guitarra->modelo ?? ""}}" placeholder="Insira o nome do modelo" required >
+            <input type="text" id="modelo" name="modelo" class="form-control" value="{{$guitar->modelo ?? ""}}" placeholder="Insira o nome do modelo" required >
         </div>
         <div class="form-group col-md-6">
             <label>Ano:</label><label class="text-danger">*</label>
-            <input type="text" id="ano" maxlength="4" size="4" name="ano" class="form-control" value="{{$guitarra->ano ?? ""}}" placeholder="Insira o ano do modelo" required>
+            <input type="text" id="ano" maxlength="4" size="4" name="ano" class="form-control" value="{{$guitar->ano ?? ""}}" placeholder="Insira o ano do modelo" required>
         </div>
         <div class="form-group col-md-6">
             <label>Preço:</label><label class="text-danger">*</label>
             
-           <input type="text" id="preco"  onkeyup="formatarMoeda()" name="preco" class="form-control" value="{{$guitarra->preco ?? ""}}" placeholder="Insira o preço do modelo" required>
+           <input type="text" id="preco"  onkeyup="formatarMoeda()" name="preco" class="form-control" value="{{$guitar->preco ?? ""}}" placeholder="Insira o preço do modelo" required>
         </div>
         <div class="form-group col-md-6">
             <label>Foto:</label><label class="text-danger">*</label>
-            <input type="text" id="foto" name="foto" class="form-control" value="{{$guitarra->foto ?? ""}}" placeholder="Insira o link da imagem (Copiar endereço de imagem)" required>
+            <input type="text" id="foto" name="foto" class="form-control" value="{{$guitar->foto ?? ""}}" placeholder="Insira o link da imagem (Copiar endereço de imagem)" required>
         </div>
         <div class="form-group col-md-6">
             <label>Cor:</label><label class="text-danger">*</label>
-            <select id="cor" name="cor" class="form-control custom-select" value="{{$guitarra->cor ?? ""}}" required>
+            <select id="cor" name="cor" class="form-control custom-select" value="{{$guitar->cor ?? ""}}" required>
                 <option value="">-- Selecionar --</option>
                 <option value="Preto">Preto</option>
                 <option value="Branco">Branco</option>
@@ -64,10 +64,10 @@
         </div>
         <div class="form-group col-md-12" >
             <label>Descrição:</label><label class="text-danger">*</label>
-            <textarea name="descricao" class="form-control" id="descricao" rows="10" value="{{$guitarra->descricao ?? ""}}" placeholder="Insira descrições mais detalhadas sobre sua guitarra" required></textarea>
+            <textarea name="descricao" class="form-control" id="descricao" rows="10" value="{{$guitar->descricao ?? ""}}" placeholder="Insira descrições mais detalhadas sobre sua guitarra" required></textarea>
         </div>
         <div class="form-group col-md-12 text-right">
-            <input class="btn btn-primary" type="submit" value="@if(isset($guitarra))Editar @else Cadastrar @endif" >
+            <input class="btn btn-primary" type="submit" value="@if(isset($guitar))Editar @else Cadastrar @endif" >
             <button type="reset" class="btn btn-secondary">
                 Limpar
             </button>

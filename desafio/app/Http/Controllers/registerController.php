@@ -1,23 +1,23 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ModelGuitarra;
+use App\Models\modelGuitar;
 
-class CadastroController extends Controller
+class registerController extends Controller
 {
-    private $objguitarra;
+    private $objguitar;
 
-    public function __construct(){
-        $this->objguitarra = new ModelGuitarra();
-        
+    public function __construct()
+    {
+        $this->objguitar = new modelGuitar();
+       // Static::$objguitar = new modelGuitar();
     }
 
-    public function index()
+    public function listingPageGuitars()
     {
-        $guitarra = $this->objguitarra->all();
-        return view ('listagem', compact('guitarra'));
+        $guitar = $this->objguitar->all();
+        return view ('listagem', compact('guitar'));
     }
 
     /**
@@ -25,7 +25,8 @@ class CadastroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    public function registerPageGuitar()
     {
        return view ('create');
     }
@@ -36,10 +37,10 @@ class CadastroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
 
-        $cad= $this->objguitarra->create([
+    public function saveGuitar(Request $request)
+    {
+        $cad= $this->objguitar->create([
                 'marca'=>$request->marca,
                 'modelo'=>$request->modelo,
                 'ano'=>$request->ano,
@@ -49,10 +50,10 @@ class CadastroController extends Controller
                 'descricao'=>$request->descricao
             ]);
 
-        if ($cad){
+        if ($cad)
+        {
             return redirect ('listagem');
         }   
-
     }
    
     /**
@@ -61,10 +62,11 @@ class CadastroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function editGuitar($id)
     {
-        $guitarra=$this->objguitarra->find($id);
-        return view ('create', compact('guitarra'));
+        $guitar=$this->objguitar->find($id);
+        return view ('create', compact('guitar'));
     }
 
     /**
@@ -74,10 +76,10 @@ class CadastroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    
+    public function saveGuitarEdit(Request $request, $id)
     {
-        
-        $this->objguitarra->where(['id'=>$id])->update([
+        $this->objguitar->where(['id'=>$id])->update([
             'marca'=>$request->marca,
             'modelo'=>$request->modelo,
             'ano'=>$request->ano,
@@ -86,7 +88,6 @@ class CadastroController extends Controller
             'cor'=>$request->cor,
             'descricao'=>$request->descricao
         ]);
-
         return redirect ('listagem');
     }
 
@@ -96,9 +97,10 @@ class CadastroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function deleteGuitar($id)
     {
-        $this->objguitarra->where(['id'=>$id])->delete();
+        $this->objguitar->where(['id'=>$id])->delete();
         return redirect('listagem');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Route; 
+        
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index');
-Route::get('/listagem', 'App\Http\Controllers\CadastroController@index');
-Route::get('/cadastrar', 'App\Http\Controllers\CadastroController@create');
-Route::post('/cadastrar', 'App\Http\Controllers\CadastroController@store');
-Route::get('/editar/{id}', 'App\Http\Controllers\CadastroController@edit');
-Route::put('/editar/{id}', 'App\Http\Controllers\CadastroController@update');
-Route::get('/deletar/{id}', 'App\Http\Controllers\CadastroController@destroy');
+Route::get('/', 'App\Http\Controllers\homeController@homePage');
+Route::get('/listagem', 'App\Http\Controllers\registerController@listingPageGuitars');
+Route::get('/cadastrar', 'App\Http\Controllers\registerController@registerPageGuitar');
+Route::post('/cadastrar', 'App\Http\Controllers\registerController@saveGuitar');
+Route::get('/editar/{id}', 'App\Http\Controllers\registerController@editGuitar');
+Route::put('/editar/{id}', 'App\Http\Controllers\registerController@saveGuitarEdit');
+Route::get('/deletar/{id}', 'App\Http\Controllers\registerController@deleteGuitar');
 
 
 
