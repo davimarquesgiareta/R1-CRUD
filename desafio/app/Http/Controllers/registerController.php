@@ -6,18 +6,10 @@ use App\Models\modelGuitar;
 
 class registerController extends Controller
 {
-    private $objguitar;
-
-    public function __construct()
-    {
-        $this->objguitar = new modelGuitar();
-       // Static::$objguitar = new modelGuitar();
-    }
-
     public function listingPageGuitars()
     {
-        $guitar = $this->objguitar->all();
-        return view ('listagem', compact('guitar'));
+        $guitar = modelGuitar::all();
+        return view ('listagem',['guitar'=> $guitar]);
     }
 
     /**
@@ -40,15 +32,15 @@ class registerController extends Controller
 
     public function saveGuitar(Request $request)
     {
-        $cad= $this->objguitar->create([
-                'marca'=>$request->marca,
+        $cad = modelGuitar::create([
+            'marca'=>$request->marca,
                 'modelo'=>$request->modelo,
                 'ano'=>$request->ano,
                 'preco'=>$request->preco,
                 'foto'=>$request->foto,
                 'cor'=>$request->cor,
                 'descricao'=>$request->descricao
-            ]);
+        ]);    
 
         if ($cad)
         {
@@ -65,8 +57,8 @@ class registerController extends Controller
 
     public function editGuitar($id)
     {
-        $guitar=$this->objguitar->find($id);
-        return view ('create', compact('guitar'));
+        $guitar = modelGuitar::find($id);
+        return view ('create',['guitar'=> $guitar]);
     }
 
     /**
@@ -79,7 +71,8 @@ class registerController extends Controller
     
     public function saveGuitarEdit(Request $request, $id)
     {
-        $this->objguitar->where(['id'=>$id])->update([
+        $objguitar = new modelGuitar();
+        $objguitar->where(['id'=>$id])->update([
             'marca'=>$request->marca,
             'modelo'=>$request->modelo,
             'ano'=>$request->ano,
@@ -100,7 +93,8 @@ class registerController extends Controller
 
     public function deleteGuitar($id)
     {
-        $this->objguitar->where(['id'=>$id])->delete();
+        $objguitar = new modelGuitar();
+        $objguitar->where(['id'=>$id])->delete();
         return redirect('listagem');
     }
 }
