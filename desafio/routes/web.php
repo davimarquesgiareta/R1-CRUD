@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\homeController@homePage');
-Route::get('/listagem', 'App\Http\Controllers\registerController@listingPageGuitars');
-Route::get('/cadastrar', 'App\Http\Controllers\registerController@registerPageGuitar');
-Route::post('/cadastrar', 'App\Http\Controllers\registerController@saveGuitar');
-Route::get('/editar/{id}', 'App\Http\Controllers\registerController@editGuitar');
-Route::put('/editar/{id}', 'App\Http\Controllers\registerController@saveGuitarEdit');
-Route::get('/deletar/{id}', 'App\Http\Controllers\registerController@deleteGuitar');
+Route::get('/', 'App\Http\Controllers\HomeController@homePage');
+Route::get('/listagem', 'App\Http\Controllers\RegisterController@listingPageGuitars');
+Route::get('/cadastrar', 'App\Http\Controllers\RegisterController@registerPageGuitar');
+Route::post('/cadastrar', 'App\Http\Controllers\RegisterController@saveGuitar');
+Route::get('/editar/{id}', 'App\Http\Controllers\RegisterController@editGuitar');
+Route::put('/editar/{id}', 'App\Http\Controllers\RegisterController@saveGuitarEdit');
+Route::get('/deletar/{id}', 'App\Http\Controllers\RegisterController@deleteGuitar');
 
 
 
