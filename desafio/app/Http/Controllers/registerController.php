@@ -9,7 +9,7 @@ class registerController extends Controller
     public function listingPageGuitars()
     {
         $guitar = modelGuitar::all();
-        return view ('listagem',['guitar'=> $guitar]);
+        return view ('listGuitars',['guitar'=> $guitar]);
     }
 
     /**
